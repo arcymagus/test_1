@@ -1,0 +1,5 @@
+FROM haproxytech/haproxy-alpine
+RUN apk add --update bash inotify-tools openssl \
+    && rm -rf /var/cache/apk/*
+
+COPY ./haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
