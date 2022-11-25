@@ -7,21 +7,18 @@ on:
     branches: [ "master" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Docker login
-    env: 
+      env: 
         DOCKER_USER: ${{secret.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secret.DOCKER_PASSWORD}}
-    run: |
-      docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - name: Docker Build
-      docker build -f haproxy/haproxy.yaml . --tag haproxy:$(date +%s) |
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD |
+    - name: Docker login
+        docker build -f haproxy/haproxy.yaml . --tag haproxy:$(date +%s) |
     - name: Docker push to Docker_HUB
-      run: docker push ${{secret.DOCKER_USER}}/test_1:tagname
+      run: docker push ${{secret.DOCKER_USER}}/test_1:haproxy
       
