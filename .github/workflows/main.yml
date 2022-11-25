@@ -16,9 +16,9 @@ jobs:
         DOCKER_USER: ${{secret.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secret.DOCKER_PASSWORD}}
       run: |
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Docker login
-        docker build -f haproxy/haproxy.yaml . --tag haproxy:$(date +%s) |
+        docker build -f haproxy/haproxy.yaml . --tag haproxy:$(date +%s)
     - name: Docker push to Docker_HUB
       run: docker push ${{secret.DOCKER_USER}}/test_1:haproxy
       
